@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro Website</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0;
+            background-color: #f4f4f4;
+            position: relative;
+            overflow: hidden;
+            text-align: center; /* Center-align all text by default */
+        }
+
+        /* Fullscreen video background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place video behind content */
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            color: #66ff66; /* Light green font color */
+            padding: 20px;
+            text-align: center; /* Center-align header text */
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center; /* Center-align navigation list */
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: #66cc66; /* Medium green font color */
+            text-decoration: none;
+            transition: color 0.3s; /* Smooth transition for active link */
+        }
+
+        header nav ul li a.active {
+            color: #339933; /* Dark green active link color */
+        }
+
+        /* Main content styles */
+        main {
+            margin-top: 20px;
+            z-index: 1;
+            transition: all 0.5s; /* Smooth transition for section scroll */
+            text-align: center; /* Center-align main content */
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #deff3b; /* Dark green font color */
+        }
+
+        p {
+            color: #f5f5cb; /* Light green font color */
+        }
+
+        /* Contact form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center-align form fields */
+        }
+
+        form input, form textarea {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #604e4e;
+            border-radius: 5px;
+            color: #000000; /* Light green font color */
+            text-align: center; /* Center-align input and textarea text */
+        }
+
+        form button {
+            background-color: #333;
+            color: #66ff66; /* Light green font color */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: hsl(0, 0%, 0%);
+            color: #66ff66; /* Light green font color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Video background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="https://www.shutterstock.com/shutterstock/videos/3464234435/preview/stock-footage-ai-and-big-data-fusion-pioneering-the-future-of-advanced-data-analysis-animation-render.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link" data-target="#home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-target="#about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-target="#contact">Contact</a></li>
+                <li><a href="https://www.linkedin.com/in/rohit-selote" target="_blank">LinkedIn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Home Section</h2>
+            <p>This is the homepage of my website. Feel free to explore!</p>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello, myself Rohit Selote,<br> I am a First-Year Computer Science & Engineering student,<br> tech enthusiast, and lifelong learner. I am committed to continuous improvement and innovation in the world of technology.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>You can contact me through the contact form below:</p>
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Rohit Selote</p>
+    </footer>
+
+    <script>
+        // JavaScript for smooth scrolling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('data-target')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Highlight active link
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // JavaScript for form validation or interactivity
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the form from actually submitting (for demo purposes)
+            
+            // Get form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            
+            if (name && email && message) {
+                alert("Thank you for your message, " + name + "!");
+                // Normally you would send the form data to a server here.
+                // Example: sendFormDataToServer(name, email, message);
+            } else {
+                alert("Please fill in all the fields.");
+            }
+        });
+    </script>
+</body>
+</html>
